@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<title>MVP - Front</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+			crossorigin="anonymous"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+		/>
+	</head>
+	<body>
+		<header class="header">
+			<h1>Donation Management</h1>
+			<div>
+				<button
+					class="button"
+					type="button"
+					data-bs-toggle="modal"
+					data-bs-target="#create-beneficiary-modal"
+				>
+					Add Beneficiary
+				</button>
+				<button
+					class="button"
+					type="button"
+					data-bs-toggle="modal"
+					data-bs-target="#create-donor-modal"
+				>
+					Add Donor
+				</button>
+			</div>
+		</header>
+		<section class="section">
+			<h2>Add Donations</h2>
+			<form class="flex flex-column row-gap" id="donation-form">
+				<div class="flex flex-row column-gap">
+					<div class="flex flex-column flex-full-width row-gap">
+						<select
+							name="beneficiary_id"
+							class="form-select"
+							id="beneficiary-select"
+							required
+						>
+							<option value="" disabled selected hidden>
+								Select Beneficiary
+							</option>
+						</select>
+						<input
+							name="product"
+							class="form-control"
+							type="text"
+							placeholder="Product"
+							required
+						/>
+					</div>
+					<div class="flex flex-column flex-full-width row-gap">
+						<select
+							name="donor_id"
+							class="form-select"
+							id="donor-select"
+							required
+						>
+							<option value="" disabled selected hidden>Select Donor</option>
+						</select>
+						<input
+							name="quantity"
+							class="form-control"
+							type="text"
+							placeholder="Quantity"
+							required
+						/>
+					</div>
+				</div>
+				<button class="button flex full-width center" type="submit">
+					Add Donation
+				</button>
+			</form>
+		</section>
+		<section class="section donations">
+			<h2>Donations</h2>
+			<table class="full-width" id="donations">
+				<tr>
+					<th>Donor</th>
+					<th>Beneficiary</th>
+					<th>Product</th>
+					<th>Quantity</th>
+				</tr>
+			</table>
+		</section>
+		<div class="modal fade" id="create-beneficiary-modal" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Create Beneficiary</h4>
+					</div>
+					<div class="modal-body">
+						<form class="flex flex-column row-gap" id="beneficiary-form">
+							<div>
+								<label>Name</label>
+								<input
+									required
+									type="text"
+									class="form-control"
+									name="name"
+									placeholder="Enter beneficiary name"
+								/>
+							</div>
+							<div>
+								<label>Adress</label>
+								<input
+									type="text"
+									class="form-control"
+									name="address"
+									placeholder="Enter beneficiary adress"
+								/>
+							</div>
+							<div>
+								<label>CPF</label>
+								<input
+									required
+									type="text"
+									class="form-control"
+									name="cpf"
+									placeholder="Enter beneficiary cpf"
+								/>
+								<span class="error hide" id="beneficiary-helper-text"></span>
+							</div>
+
+							<div class="modal-footer">
+								<button type="submit" class="button">Save changes</button>
+								<button type="button" class="button" data-bs-dismiss="modal">
+									Close
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="create-donor-modal" role="dialog">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Create Donor</h4>
+					</div>
+					<div class="modal-body">
+						<form class="flex flex-column row-gap" id="donor-form">
+							<div>
+								<label>Name</label>
+								<input
+									required
+									type="text"
+									class="form-control"
+									name="name"
+									placeholder="Enter donor name"
+								/>
+							</div>
+							<div>
+								<label>Adress</label>
+								<input
+									type="text"
+									class="form-control"
+									name="address"
+									placeholder="Enter donor adress"
+								/>
+							</div>
+							<div>
+								<label>CNPJ</label>
+								<input
+									required
+									type="text"
+									class="form-control"
+									name="cnpj"
+									placeholder="Enter donor cnpj"
+								/>
+								<span class="error hide" id="donor-helper-text"></span>
+							</div>
+							<div class="modal-footer">
+								<button type="submit" class="button">Save changes</button>
+								<button type="button" class="button" data-bs-dismiss="modal">
+									Close
+								</button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script
+			src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+			integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+			crossorigin="anonymous"
+		></script>
+		<script src="script.js"></script>
+	</body>
+</html>
